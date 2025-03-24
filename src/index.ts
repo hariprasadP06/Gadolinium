@@ -13,7 +13,6 @@
 //   // expiresIn: "7d",
 // });
 
-
 // console.log("Token:",token);
 
 // try{
@@ -25,11 +24,10 @@
 //   console.log("Error:",error);
 // };
 
-
 import "dotenv/config";
 import { hono } from "./routes";
-import {serve} from "@hono/node-server";
+import { serve } from "@hono/node-server";
 
 serve(hono, (info) => {
-  console.log(`server is running on port ${info.port}`);
-})
+  console.log("server is running on port :https:/localhost:3000 ");
+});

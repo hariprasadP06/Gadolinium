@@ -2,7 +2,7 @@ import { createHash } from "crypto";
 
 import { SignUpWithUsernameAndPasswordError, type SignUpWithUsernameAndPasswordResult } from "./+type";
 import { prismaClient } from "../../extras/prisma";
-import { sign, type JwtPayload } from "jsonwebtoken";
+import Jwt from "jsonwebtoken";
 import { jwtSecretKey } from "../../../environment";
 
 export const signUpWithUsernameAndPassword = async (parameters: {
@@ -30,13 +30,13 @@ export const signUpWithUsernameAndPassword = async (parameters: {
     });
 
     // Generate token
-    const jwtPayload: JwtPayload = {
-      iss: "https://purpleshorts.co.in",
+    const jwtPayload: Jwt.JwtPayload = {
+      iss: "https://github.com/hariprasadP06",
       sub: user.id,
       username: user.username,
     };
 
-    const token = sign(jwtPayload, jwtSecretKey, {
+    const token = Jwt.sign(jwtPayload, jwtSecretKey, {
       expiresIn: "30d",
     });
 
