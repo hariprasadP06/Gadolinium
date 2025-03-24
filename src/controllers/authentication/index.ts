@@ -1,6 +1,9 @@
 import { createHash } from "crypto";
 
-import { SignUpWithUsernameAndPasswordError, type SignUpWithUsernameAndPasswordResult } from "./+type";
+import {
+  SignUpWithUsernameAndPasswordError,
+  type SignUpWithUsernameAndPasswordResult,
+} from "./+type";
 import { prismaClient } from "../../extras/prisma";
 import Jwt from "jsonwebtoken";
 import { jwtSecretKey } from "../../../environment";
@@ -20,7 +23,9 @@ export const signUpWithUsernameAndPassword = async (parameters: {
       throw SignUpWithUsernameAndPasswordError.CONFLICTING_USERNAME;
     }
 
-    const passwordHash = createHash("sha256").update(parameters.password).digest("hex");
+    const passwordHash = createHash("sha256")
+      .update(parameters.password)
+      .digest("hex");
 
     const user = await prismaClient.user.create({
       data: {
